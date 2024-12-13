@@ -11,6 +11,6 @@ jobs:
     displayName: Login to ACR
     inputs:
       command: login
-      containerRegistry: garethplay
+      containerRegistry: gareth-play-azuron-uk-pay-as-you-go
   - script: |
       docker run docker pull garethplay.azurecr.io/hashicorp/terraform:latest
