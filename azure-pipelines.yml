@@ -13,4 +13,4 @@ jobs:
       command: login
       containerRegistry: azuron-sc-workload-identity
   - script: |
-      docker run azuron.azurecr.io/hashicorp/terraform:latest
+      docker run azuron.azurecr.io/hashicorp/terraform:latest init
