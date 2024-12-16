@@ -15,7 +15,7 @@ jobs:
       containerRegistry: azuron-sc-workload-identity
   - script: |
       docker run -w /tmp/codebase \
-                 -e SYSTEM_ACCESSTOKEN=$(System.AccessToken)
+                 -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
                  -v $(Pipeline.Workspace)/s:/tmp/codebase \
                  azuron.azurecr.io/azure-cli-terraform:0.0.2 \
                  /tmp/codebase/terraform-init-apply.sh
