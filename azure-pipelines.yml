@@ -15,4 +15,4 @@ jobs:
       command: login
       containerRegistry: azuron-sc-workload-identity
   - script: |
-      docker run -w /tmp/codebase -v /home/vsts/work/1/s:/tmp/codebase azuron.azurecr.io/hashicorp/terraform init
+      docker run -w /tmp/codebase -v $(Pipeline.Workspace)/s:/tmp/codebase azuron.azurecr.io/hashicorp/terraform init
