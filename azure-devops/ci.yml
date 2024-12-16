@@ -15,7 +15,6 @@ jobs:
       containerRegistry: azuron-sc-workload-identity
   - script: |
       docker run -w /tmp/codebase \
-                 -e ARM_SUBSCRIPTION_ID=60e1436b-d08b-466d-b42a-98011fed3eb2 \
                  -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
                  -v $(Pipeline.Workspace)/s:/tmp/codebase \
                  azuron.azurecr.io/azure-cli-terraform:0.0.2 \

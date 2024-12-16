@@ -1,5 +1,10 @@
 #!/bin/bash
 
+export ARM_USE_MSI=true
+export ARM_SUBSCRIPTION_ID=60e1436b-d08b-466d-b42a-98011fed3eb2
+export ARM_TENANT_ID=576d634f-7729-4278-9174-4ed588ee532a
+export ARM_CLIENT_ID=2dcef099-1705-43eb-abef-7ab2781403a4 # only necessary for user assigned identity
+
 RESOURCE_GROUP_NAME=azuron-play-eu-west
 STORAGE_ACCOUNT_NAME=azuronplayeuwest
 CONTAINER_NAME=terraforma-azuron-play-eu-west
