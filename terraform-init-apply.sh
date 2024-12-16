@@ -16,9 +16,10 @@ az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOU
 
 # See https://developer.hashicorp.com/terraform/language/backend/azurerm
 terraform init -backend=true \
-               -backend-config="resource_group_name=azuron-play-eu-west" \
-               -backend-config="storage_account_name=azuronplayeuwest" \
-               -backend-config="container_name=terraforma-zuron-play-eu-west"  \
+               -backend-config="resource_group_name=$RESOURCE_GROUP_NAME" \
+               -backend-config="storage_account_name=$STORAGE_ACCOUNT_NAME" \
+               -backend-config="container_name=$CONTAINER_NAME"  \
+               -backend-config="key=terraform.tfstate"  \
                -backend-config="use_azuread_auth=true"  \
                -backend-config="use_oidc=true"
 
