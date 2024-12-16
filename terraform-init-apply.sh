@@ -2,8 +2,10 @@
 
 RESOURCE_GROUP_NAME=azuron-play-eu-west
 STORAGE_ACCOUNT_NAME=azuronplayeuwest
-CONTAINER_NAME=terraforma-zuron-play-eu-west
+CONTAINER_NAME=terraforma-azuron-play-eu-west
 REGION=westeu
+
+az login --identity --usernmae 2dcef099-1705-43eb-abef-7ab2781403a4
 
 # # Create resource group
 # az group create --name $RESOURCE_GROUP_NAME --location $REGION
