@@ -11,6 +11,6 @@ jobs:
     displayName: Login to ACR
     inputs:
       command: login
-      containerRegistry: azuron-sc-managed-service-identity
+      containerRegistry: azuron-sc-workload-identity
   - script: |
       docker run azuron.azurecr.io/hashicorp/terraform:latest init
