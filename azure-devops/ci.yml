@@ -16,5 +16,5 @@ jobs:
   - script: |
       docker run -w /tmp/codebase \
                  -v $(Pipeline.Workspace)/s:/tmp/codebase \
-                 azuron.azurecr.io/azure-cli-terraform:0.0.1 \
+                 azuron.azurecr.io/azure-cli-terraform:0.0.2 \
                  /tmp/codebase/terraform-init-apply.sh

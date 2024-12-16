@@ -5,6 +5,8 @@ STORAGE_ACCOUNT_NAME=azuronplayeuwest
 CONTAINER_NAME=terraforma-azuron-play-eu-west
 REGION=westeu
 
+curl -v http://169.254.169.254
+
 az login --identity --username 2dcef099-1705-43eb-abef-7ab2781403a4
 
 # # Create resource group
