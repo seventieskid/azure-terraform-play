@@ -13,4 +13,4 @@ jobs:
       command: login
       containerRegistry: azuron-sc-workload-identity
   - script: |
-      docker run azuron.azurecr.io/bash /bin/bash -c "ls -aRl"
+      docker run azuron.azurecr.io/bash -c "ls -aRl"
