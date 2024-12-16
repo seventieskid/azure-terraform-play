@@ -15,4 +15,4 @@ jobs:
       command: login
       containerRegistry: azuron-sc-workload-identity
   - script: |
-      docker run -v /home/vsts/work/1/s:/tmp/codebase azuron.azurecr.io/bash -c "ls -aRl /tmp/codebase"
+      docker run -w /tmp/codebase -v /home/vsts/work/1/s:/tmp/codebase azuron.azurecr.io/hashicorp init
