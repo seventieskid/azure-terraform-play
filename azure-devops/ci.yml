@@ -10,6 +10,10 @@ jobs:
   - task: Bash@3
     inputs:
       targetType: 'inline'
+      script: 'ls -aRl $HOME'
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
       script: 'pwd'
   - task: Bash@3
     inputs:
