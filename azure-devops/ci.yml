@@ -7,6 +7,14 @@ jobs:
     clean: all
   pool: azuron-linux-agent-pool
   steps:
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'pwd'
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'ls -aRl'
   - task: Docker@2
     displayName: Login to ACR
     inputs:
