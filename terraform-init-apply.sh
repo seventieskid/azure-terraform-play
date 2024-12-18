@@ -5,6 +5,7 @@ REGION=westeurope
 
 ls -aRl /root/.azure
 
+echo $HOME
 echo $AZURE_CONFIG_DIR
 
 # Create resource group
