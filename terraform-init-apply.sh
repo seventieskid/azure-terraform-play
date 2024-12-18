@@ -9,7 +9,7 @@ echo $SYSTEM_ACCESSTOKEN
 
 echo $SYSTEM_ACCESSTOKEN | az devops login
 
-az devops configure --list
+az devops project list
 
 #az login --identity --username $CLIENT_ID
 
