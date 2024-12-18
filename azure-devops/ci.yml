@@ -19,11 +19,14 @@ jobs:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az account list'
-  - script: |
-      displayName: Run custom container
-      docker run -w /tmp/codebase \
-                 --network host \
-                 -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
-                 -v $(Pipeline.Workspace)/s:/tmp/codebase \
-                 azuron.azurecr.io/azure-cli-terraform:0.0.2 \
-                 /tmp/codebase/terraform-init-apply.sh
+  - task: Bash@3
+    displayName: Run custom container
+    inputs:
+      targetType: 'inline'
+      script: |
+        docker run -w /tmp/codebase \
+                  --network host \
+                  -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
+                  -v $(Pipeline.Workspace)/s:/tmp/codebase \
+                  azuron.azurecr.io/azure-cli-terraform:0.0.2 \
+                  /tmp/codebase/terraform-init-apply.sh
