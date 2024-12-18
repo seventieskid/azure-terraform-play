@@ -5,7 +5,7 @@ jobs:
 - job: terraform_test
   workspace:
     clean: all
-  pool: azuron-linux-agents
+  pool: azuron-public
   steps:
   - task: Docker@2
     displayName: Login to ACR
@@ -13,12 +13,18 @@ jobs:
       command: login
       containerRegistry: azuron-sc-service-principal
   - task: Bash@3
+    displayName: Bring Azure identity onto agent
+    inputs:
+      targetType: 'inline'
+      script: |
+        az login --identity --username 0050c121-c7d3-4c69-ae21-99d536cf86d0
+  - task: Bash@3
     displayName: Run custom container
     inputs:
       targetType: 'inline'
       script: |
         docker run -w /tmp/codebase \
-                  -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
+                  -e AZURE_CONFIG_DIR=/root/.azure \
                   -v $(Pipeline.Workspace)/s:/tmp/codebase \
                   -v /home/grees/.azure:/root/.azure \
                   azuron.azurecr.io/azure-cli-terraform:0.0.2 \

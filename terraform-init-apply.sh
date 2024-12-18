@@ -1,20 +1,14 @@
 #!/bin/bash 
 
-CLIENT_ID=b956e4d2-1f4d-45d5-91c2-baa0c9b9e761
+CLIENT_ID=0050c121-c7d3-4c69-ae21-99d536cf86d0
 RESOURCE_GROUP_NAME=frominsidecontainer
 REGION=westeurope
 
-echo "system-access-token="
-echo $SYSTEM_ACCESSTOKEN
+# Special
 
-echo $SYSTEM_ACCESSTOKEN | az devops login
-
-az devops project list --organization https://dev.azure.com/azuron-ado-organisation/
-
-#az login --identity --username $CLIENT_ID
 
 # Create resource group
-#az group create --name $RESOURCE_GROUP_NAME --location $REGION
+az group create --name $RESOURCE_GROUP_NAME --location $REGION
 
 # Create storage account
 # az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob

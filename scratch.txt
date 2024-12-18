@@ -28,9 +28,13 @@ az vm list-skus --location westeurope --all --output table
 
 # With public IP
 
+az group create \
+--location westeurope \
+--name azuron-vmssagents-public
+
 az vmss create \
-  --name azuron-vmssagents-public-pool \
-  --resource-group azuron-vmssagents \
+  --name azuron-public \
+  --resource-group azuron-vmssagents-public \
   --image Ubuntu2204 \
   --upgrade-policy-mode automatic \
   --custom-data /Users/garethrees/gitrepos/azure-terraform-play/cloud-config.yml \
@@ -40,4 +44,4 @@ az vmss create \
   --instance-count 1 \
   --orchestration-mode Uniform
 
-ssh grees@137.116.195.189 -p 50000
+ssh grees@52.232.97.193 -p 50000
