@@ -9,7 +9,7 @@ echo $SYSTEM_ACCESSTOKEN
 
 echo $SYSTEM_ACCESSTOKEN | az devops login
 
-az devops project list
+az devops project list --organization azuron-ado-organisation
 
 #az login --identity --username $CLIENT_ID
 
