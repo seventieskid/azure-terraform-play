@@ -26,6 +26,7 @@ jobs:
       containerRegistry: azuron-sc-service-principal
   - script: |
       docker run -w /tmp/codebase \
+                 --network host \
                  -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
                  -v $(Pipeline.Workspace)/s:/tmp/codebase \
                  azuron.azurecr.io/azure-cli-terraform:0.0.2 \
