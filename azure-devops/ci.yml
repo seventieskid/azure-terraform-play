@@ -24,7 +24,6 @@ jobs:
       targetType: 'inline'
       script: |
         docker run -w /tmp/codebase \
-                  --network host \
                   -e AZURE_CONFIG_DIR=/root/.azure \
                   -v $(Pipeline.Workspace)/s:/tmp/codebase:rw \
                   -v $HOME/.azure:/root/.azure:rw \
