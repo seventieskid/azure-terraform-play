@@ -5,7 +5,7 @@ jobs:
 - job: terraform_test
   workspace:
     clean: all
-  pool: azuron-linux-agent-pool
+  pool: azuron-linux-agents
   steps:
   - task: Docker@2
     displayName: Login to ACR
@@ -18,8 +18,8 @@ jobs:
       targetType: 'inline'
       script: |
         docker run -w /tmp/codebase \
-                  --network host \
                   -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
                   -v $(Pipeline.Workspace)/s:/tmp/codebase \
+                  -v /home/grees/.azure:/root/.azure \
                   azuron.azurecr.io/azure-cli-terraform:0.0.2 \
                   /tmp/codebase/terraform-init-apply.sh

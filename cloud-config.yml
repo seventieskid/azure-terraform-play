@@ -1,11 +1,24 @@
-#cloud-config.yml
+#cloud-config
+apt:
+  sources:
+    az.list:
+      source: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli $RELEASE main
+      keyid: BC528686B50D79E339D3721CEB3E94ADBE1229CF
+    docker.list:
+      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable
+      keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    ubunut-ms.list:
+      source: deb [arch=amd64] https://packages.microsoft.com/ubuntu/22.04/prod $RELEASE main
+      keyid: BC528686B50D79E339D3721CEB3E94ADBE1229CF
+
 package_update: true
 packages:
   - apt-transport-https
+  - azure-cli
+  - docker-ce
+  - docker-ce-cli
   - curl
-  - docker.io
+  - unzip # required for TerraformInstaller task
 
 runcmd:
-  - curl -L -o /usr/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-  - chmod +x /usr/bin/kubectl
   - chmod 666 /var/run/docker.sock

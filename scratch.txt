@@ -22,6 +22,22 @@ az vmss create \
 
 # Defaults to Standard_DS1_v2 0.0136 USD per hour
 
-ssh grees@52.174.56.172  -p 50000
 
 az vm list-skus --location westeurope --all --output table
+
+
+# With public IP
+
+az vmss create \
+  --name azuron-vmssagents-public-pool \
+  --resource-group azuron-vmssagents \
+  --image Ubuntu2204 \
+  --upgrade-policy-mode automatic \
+  --custom-data /Users/garethrees/gitrepos/azure-terraform-play/cloud-config.yml \
+  --admin-username grees \
+  --authentication-type SSH \
+  --generate-ssh-keys \
+  --instance-count 1 \
+  --orchestration-mode Uniform
+
+ssh grees@137.116.195.189 -p 50000
