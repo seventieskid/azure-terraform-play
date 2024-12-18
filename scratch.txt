@@ -1,0 +1,27 @@
+az group create \
+--location westeurope \
+--name azuron-vmssagents
+
+# Support request out for Standard_B2pts_v2 50 x cheaper than
+
+az vmss create \
+--name azuron-vmssagents-pool \
+--resource-group azuron-vmssagents \
+--image Ubuntu2204 \
+--authentication-type SSH \
+--admin-username grees \
+--generate-ssh-keys \
+--instance-count 1 \
+--disable-overprovision \
+--upgrade-policy-mode manual \
+--single-placement-group false \
+--platform-fault-domain-count 1 \
+--load-balancer "" \
+--custom-data /Users/garethrees/gitrepos/azure-terraform-play/cloud-config.yml \
+--orchestration-mode Uniform
+
+# Defaults to Standard_DS1_v2 0.0136 USD per hour
+
+ssh grees@52.174.56.172  -p 50000
+
+az vm list-skus --location westeurope --all --output table
