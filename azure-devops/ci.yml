@@ -15,7 +15,7 @@ jobs:
   - task: AzureCLI@2
     displayName: Test CLI
     inputs:
-      azureSubscription: azuron-uk-pay-as-you-go
+      azureSubscription: 'azuron-uk-pay-as-you-go(5)(60e1436b-d08b-466d-b42a-98011fed3eb2)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az account list'
