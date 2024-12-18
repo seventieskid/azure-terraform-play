@@ -30,18 +30,21 @@ az vm list-skus --location westeurope --all --output table
 
 az group create \
 --location westeurope \
---name azuron-vmssagents-public
+--name azuron-devops-agents
 
 az vmss create \
-  --name azuron-public \
-  --resource-group azuron-vmssagents-public \
+  --name azuron-devops-agents \
+  --resource-group azuron-devops-agents \
   --image Ubuntu2204 \
-  --upgrade-policy-mode automatic \
   --custom-data /Users/garethrees/gitrepos/azure-terraform-play/cloud-config.yml \
-  --admin-username grees \
+  --admin-username azuron \
   --authentication-type SSH \
   --generate-ssh-keys \
   --instance-count 1 \
+  --disable-overprovision \
+  --upgrade-policy-mode manual \
+  --single-placement-group false \
+  --platform-fault-domain-count 1 \
   --orchestration-mode Uniform
 
-ssh grees@52.232.97.193 -p 50000
+ssh azuron@52.232.97.193 -p 50000

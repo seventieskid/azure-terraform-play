@@ -17,7 +17,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        az login --identity --username 0050c121-c7d3-4c69-ae21-99d536cf86d0
+        az login --identity --username ba68b5e0-f6a9-490e-be3b-52be81e26eed
   - task: Bash@3
     displayName: Run custom container
     inputs:
@@ -26,6 +26,6 @@ jobs:
         docker run -w /tmp/codebase \
                   -e AZURE_CONFIG_DIR=/root/.azure \
                   -v $(Pipeline.Workspace)/s:/tmp/codebase \
-                  -v /home/grees/.azure:/root/.azure \
+                  -v /home/azuron/.azure:/root/.azure \
                   azuron.azurecr.io/azure-cli-terraform:0.0.2 \
                   /tmp/codebase/terraform-init-apply.sh
