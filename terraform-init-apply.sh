@@ -3,6 +3,8 @@
 RESOURCE_GROUP_NAME=frominsidecontainer
 REGION=westeurope
 
+ls -aRl /root/.azure
+
 # Create resource group
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
 

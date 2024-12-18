@@ -47,4 +47,4 @@ az vmss create \
   --platform-fault-domain-count 1 \
   --orchestration-mode Uniform
 
-ssh azuron@52.232.97.193 -p 50000
+ssh azuron@52.166.132.58 -p 50000

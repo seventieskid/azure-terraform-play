@@ -18,12 +18,14 @@ jobs:
       targetType: 'inline'
       script: |
         az login --identity --username ba68b5e0-f6a9-490e-be3b-52be81e26eed
+        ls -aRl /home/azuron/.azure
   - task: Bash@3
     displayName: Run custom container
     inputs:
       targetType: 'inline'
       script: |
         docker run -w /tmp/codebase \
+                  --network host \
                   -e AZURE_CONFIG_DIR=/root/.azure \
                   -v $(Pipeline.Workspace)/s:/tmp/codebase \
                   -v /home/azuron/.azure:/root/.azure \
