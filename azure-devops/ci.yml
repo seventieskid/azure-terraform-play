@@ -12,13 +12,6 @@ jobs:
     inputs:
       command: login
       containerRegistry: azuron-sc-service-principal
-  - task: AzureCLI@2
-    displayName: Test CLI
-    inputs:
-      azureSubscription: azuron-uk-pay-as-you-go
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: 'az account list'
   - task: Bash@3
     displayName: Run custom container
     inputs:
