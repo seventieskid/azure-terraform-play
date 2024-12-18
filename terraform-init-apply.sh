@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/bin/bash 
 
-az login --identity
-
+CLIENT_ID=b956e4d2-1f4d-45d5-91c2-baa0c9b9e761
 RESOURCE_GROUP_NAME=frominsidecontainer
 REGION=westeurope
+
+az login --identity --username $CLIENT_ID
 
 # Create resource group
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
