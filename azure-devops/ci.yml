@@ -12,9 +12,6 @@ jobs:
     inputs:
       command: login
       containerRegistry: azuron-sc-service-principal
-  - script: echo $(AccessToken) | az devops login
-    env:
-      AccessToken: $(System.AccessToken)
   - task: Bash@3
     displayName: Run custom container
     inputs:

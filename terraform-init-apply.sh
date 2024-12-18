@@ -7,6 +7,8 @@ REGION=westeurope
 echo "system-access-token="
 echo $SYSTEM_ACCESSTOKEN
 
+echo $SYSTEM_ACCESSTOKEN | az devops login
+
 #az login --identity --username $CLIENT_ID
 
 # Create resource group
