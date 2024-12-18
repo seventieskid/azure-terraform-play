@@ -17,10 +17,10 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        mkdir .azure-for-docker
-        AZURE_CONFIG_DIR=.azure-for-docker
-        az login --identity --username ba68b5e0-f6a9-490e-be3b-52be81e26eed
-        ls -aRl .azure-for-docker
+        mkdir $(Pipeline.Workspace)/s/.azure-for-docker
+        cd $(Pipeline.Workspace)/s/.azure-for-docker
+        AZURE_CONFIG_DIR=$(Pipeline.Workspace)/s/.azure-for-docker az login --identity --username ba68b5e0-f6a9-490e-be3b-52be81e26eed
+        ls -aRl $(Pipeline.Workspace)/s/.azure-for-docker
   - task: Bash@3
     displayName: Run custom container
     inputs:
