@@ -2,7 +2,7 @@
 
 az login --identity
 
-RESOURCE_GROUP=frominsidecontainer
+RESOURCE_GROUP_NAME=frominsidecontainer
 REGION=westeurope
 
 # Create resource group
