@@ -17,8 +17,10 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
+        mkdir .azure-for-docker
+        AZURE_CONFIG_DIR=.azure-for-docker
         az login --identity --username ba68b5e0-f6a9-490e-be3b-52be81e26eed
-        pwd
+        ls -aRl .azure-for-docker
   - task: Bash@3
     displayName: Run custom container
     inputs:
@@ -27,7 +29,7 @@ jobs:
         docker run -w /tmp/codebase \
                   --network host \
                   -e AZURE_CONFIG_DIR=/root/.azure \
-                  -v $(Pipeline.Workspace)/s:/tmp/codebase \
-                  -v /home/azuron/.azure:/root/.azure \
+                  -v $(Pipeline.Workspace)/s:/tmp/codebase:rw \
+                  -v  $(Pipeline.Workspace)/s/.azure-for-docker:/root/.azure:rw \
                   azuron.azurecr.io/azure-cli-terraform:0.0.2 \
                   /tmp/codebase/terraform-init-apply.sh
