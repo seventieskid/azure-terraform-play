@@ -8,7 +8,7 @@ jobs:
   pool: azuron-devops-agents-pool
 
   variables:
-  - name: msi-client-id
+  - name: msi_client_id
     value: c6e26877-5362-4b06-9d25-4f878d4e5ab5 
 
   steps:
@@ -22,7 +22,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        az login --identity --username ${{ variables.msi-client-id }}
+        az login --identity --username ${{ variables.msi_client_id }}
   - task: Bash@3
     displayName: Run custom container
     inputs:
