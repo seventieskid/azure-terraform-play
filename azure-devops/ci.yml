@@ -17,6 +17,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
+        sleep 60
         az login --identity --username c6e26877-5362-4b06-9d25-4f878d4e5ab5
   - task: Bash@3
     displayName: Run custom container
