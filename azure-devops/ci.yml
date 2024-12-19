@@ -22,7 +22,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        az login --identity --username ${{ variable.msi-client-id }}
+        az login --identity --username ${{ variables.msi-client-id }}
   - task: Bash@3
     displayName: Run custom container
     inputs:
