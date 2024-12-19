@@ -17,6 +17,8 @@ az group create --name $RESOURCE_GROUP_NAME --location $REGION
 #                -backend-config="container_name=$STORAGE_CONTAINER_NAME"  \
 #                -backend-config="key=terraform.tfstate"
 
+#export ARM_USE_MSI=true ARM_TENANT_ID=576d634f-7729-4278-9174-4ed588ee532a
+
 terraform init -backend=true \
                -backend-config="resource_group_name=$RESOURCE_GROUP_NAME" \
                -backend-config="storage_account_name=manualtester" \
