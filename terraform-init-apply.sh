@@ -11,12 +11,19 @@ az group create --name $RESOURCE_GROUP_NAME --location $REGION
 # az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 
 # See https://developer.hashicorp.com/terraform/language/backend/azurerm
+# terraform init -backend=true \
+#                -backend-config="resource_group_name=$RESOURCE_GROUP_NAME" \
+#                -backend-config="storage_account_name=$STORAGE_ACCOUNT_NAME" \
+#                -backend-config="container_name=$STORAGE_CONTAINER_NAME"  \
+#                -backend-config="key=terraform.tfstate"
+
 terraform init -backend=true \
                -backend-config="resource_group_name=$RESOURCE_GROUP_NAME" \
-               -backend-config="storage_account_name=$STORAGE_ACCOUNT_NAME" \
-               -backend-config="container_name=$STORAGE_CONTAINER_NAME"  \
-               -backend-config="key=terraform.tfstate"  \
-               -backend-config="use_azuread_auth=true"  \
-               -backend-config="use_oidc=true"
+               -backend-config="storage_account_name=manualtester" \
+               -backend-config="container_name=terraformstate"  \
+               -backend-config="key=terraform.tfstate"
+
+            #    -backend-config="use_azuread_auth=true"  \
+            #    -backend-config="use_oidc=true"
 
 terraform apply -auto-approve
