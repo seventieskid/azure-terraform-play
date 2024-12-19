@@ -17,7 +17,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        az login --identity --username ba68b5e0-f6a9-490e-be3b-52be81e26eed
+        az login --identity --username bc6e26877-5362-4b06-9d25-4f878d4e5ab5
   - task: Bash@3
     displayName: Run custom container
     inputs:
