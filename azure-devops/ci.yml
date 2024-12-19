@@ -5,7 +5,7 @@ jobs:
 - job: terraform_test
   workspace:
     clean: all
-  pool: azuron-devops-agents
+  pool: azuron-devops-agents-pool
   steps:
   - task: Docker@2
     displayName: Login to ACR

@@ -33,7 +33,7 @@ az group create \
 --name azuron-devops-agents
 
 az vmss create \
-  --name azuron-devops-agents \
+  --name azuron-devops-agents-pool \
   --resource-group azuron-devops-agents \
   --image Ubuntu2204 \
   --custom-data /Users/garethrees/gitrepos/azure-terraform-play/cloud-config.yml \
@@ -47,4 +47,6 @@ az vmss create \
   --platform-fault-domain-count 1 \
   --orchestration-mode Uniform
 
-ssh azuron@52.166.132.58 -p 50000
+ssh azuron@4.180.42.9 -p 50000
+
+az group delete --name azuron-devops-agents
