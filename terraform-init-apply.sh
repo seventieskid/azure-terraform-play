@@ -17,6 +17,6 @@ terraform init -backend=true \
                -backend-config="container_name=$STORAGE_CONTAINER_NAME"  \
                -backend-config="key=terraform.tfstate"  \
                -backend-config="use_azuread_auth=true"  \
-               -backend-config="use_oidc=true"
+               -backend-config="use_msi=true"
 
 terraform apply -auto-approve
