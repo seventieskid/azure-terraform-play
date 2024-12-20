@@ -29,6 +29,7 @@ jobs:
       targetType: 'inline'
       script: |
         docker run -w /tmp/codebase \
+                  -e LONG_COMMIT_SHA=${sourceVersion:0:7}
                   -v $(Pipeline.Workspace)/s:/tmp/codebase:rw \
                   -v $HOME/.azure:/root/.azure:rw \
                   azuron.azurecr.io/azure-cli-terraform:0.0.2 \

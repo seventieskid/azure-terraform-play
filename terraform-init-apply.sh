@@ -3,12 +3,13 @@
 RESOURCE_GROUP_NAME=terraform-test-rg
 STORAGE_ACCOUNT_NAME=terraformteststorageac
 STORAGE_CONTAINER_NAME=terraform-state
+COMMIT_SHA=$LONG_COMMIT_SHA
 REGION=westeurope
 
 # Prep for tf state storage
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
 
-az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
+az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME"-"$COMMIT_SHA --sku Standard_LRS --encryption-services blob
 
 # az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 
