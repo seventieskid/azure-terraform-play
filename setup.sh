@@ -53,3 +53,41 @@ az vmss update-instances -g azuron-devops-agents -n azuron-devops-agents --insta
 
 # Delete resource group
 az group delete --name azuron-devops-agents
+
+
+# Current issue...
+
+AzDevOps@azurod351000000:/agent/_work/1/s$ ls -al
+total 12
+drwxr-xr-x 3 AzDevOps AzDevOps 4096 Dec 20 17:07 .
+drwxr-xr-x 3 AzDevOps AzDevOps 4096 Dec 20 17:07 ..
+drwxr-xr-x 3 root     root     4096 Dec 20 17:05 .terraform
+
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers
+rm: could not remove file (code EACCES): /agent/_work/1/s/.terraform/terraform.tfstate
+rm: could not remove directory (code ENOTEMPTY): /agent/_work/1/s/.terraform
+rm: could not remove file (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0/linux_amd64/LICENSE.txt
+rm: could not remove file (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0/linux_amd64/terraform-provider-azurerm_v4.13.0_x5
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0/linux_amd64
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers
+rm: could not remove file (code EACCES): /agent/_work/1/s/.terraform/terraform.tfstate
+rm: could not remove directory (code ENOTEMPTY): /agent/_work/1/s/.terraform
+rm: could not remove directory (code ENOTEMPTY): /agent/_work/1/s
+##[error]Error: Failed rmRF: rm: could not remove file (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0/linux_amd64/LICENSE.txt
+rm: could not remove file (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0/linux_amd64/terraform-provider-azurerm_v4.13.0_x5
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0/linux_amd64
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.13.0
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp/azurerm
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io/hashicorp
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers/registry.terraform.io
+rm: could not remove directory (code EACCES): /agent/_work/1/s/.terraform/providers
+rm: could not remove file (code EACCES): /agent/_work/1/s/.terraform/terraform.tfstate
+rm: could not remove directory (code ENOTEMPTY): /agent/_work/1/s/.terraform
+rm: could not remove directory (code ENOTEMPTY): /agent/_work/1/s
+##[error]Couldn't delete one or more files
+Finishing: clean *
