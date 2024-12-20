@@ -6,12 +6,12 @@ STORAGE_CONTAINER_NAME=terraform-state
 COMMIT_SHA=$LONG_COMMIT_SHA
 REGION=westeurope
 
-uuid=$(uuidgen)
+UUID=$(cat /proc/sys/kernel/random/uuid)
 
 # Prep for tf state storage
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
 
-az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME$uuid --sku Standard_LRS --encryption-services blob
+az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME$UUID --sku Standard_LRS --encryption-services blob
 
 # az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 
