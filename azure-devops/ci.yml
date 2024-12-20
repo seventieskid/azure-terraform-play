@@ -5,11 +5,11 @@ jobs:
 - job: terraform_test
   workspace:
     clean: all
-  pool: azuron-devops-agents-pool
+  pool: azuron-devops-agents
 
   variables:
   - name: msi_client_id
-    value: c6e26877-5362-4b06-9d25-4f878d4e5ab5 
+    value: 72384307-c00c-4ebd-9f6e-44147893c91c
 
   steps:
   - task: Docker@2
@@ -34,3 +34,10 @@ jobs:
                   -v $HOME/.azure:/root/.azure:rw \
                   azuron.azurecr.io/azure-cli-terraform:0.0.2 \
                   /tmp/codebase/terraform-init-apply.sh
+  - task: DeleteFiles@1
+    displayName: 'clean *'
+    inputs:
+      SourceFolder: '$(Pipeline.Workspace)'
+      Contents: '**/*'
+      RemoveDotFiles: true
+    condition: always()
