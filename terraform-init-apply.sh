@@ -26,4 +26,4 @@ terraform init -backend=true \
                -backend-config="container_name=$STORAGE_CONTAINER_NAME"  \
                -backend-config="key=terraform.tfstate"
 
-terraform destroy
+terraform destroy -auto-approve
