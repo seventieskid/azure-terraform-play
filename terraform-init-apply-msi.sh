@@ -5,8 +5,6 @@ STORAGE_ACCOUNT_NAME=terraformgarethrees
 STORAGE_CONTAINER_NAME=terraform-state
 REGION=westeurope
 
-az account list
-
 # Prep for tf state storage
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
 

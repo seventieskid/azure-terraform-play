@@ -34,3 +34,11 @@ SPN_SECRET_ID=$(echo $SPN_OUT | jq -r '.password')
 az keyvault secret set --vault-name "azuron" --name "azuron-spn-client-id" --value "${SPN_CLIENT_ID}"
 az keyvault secret set --vault-name "azuron" --name "azuron-spn-secret-id" --value "${SPN_SECRET_ID}"
 ```
+
+## Bootstrap Azure: Enure Our Pipeline User Managed Identity can pull secrets from Key Vault
+```
+az role assignment create --assignee 23d6202e-42d4-4ad7-b8ba-9a9fbcfb2212 \
+--role "Key Vault Secrets User" \
+--scope "/subscriptions/60e1436b-d08b-466d-b42a-98011fed3eb2"
+```
+

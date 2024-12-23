@@ -98,6 +98,10 @@ az role assignment create --assignee 23d6202e-42d4-4ad7-b8ba-9a9fbcfb2212 \
 --role Owner \
 --scope "/subscriptions/60e1436b-d08b-466d-b42a-98011fed3eb2"
 
+az role assignment create --assignee 23d6202e-42d4-4ad7-b8ba-9a9fbcfb2212 \
+--role "Key Vault Secrets User" \
+--scope "/subscriptions/60e1436b-d08b-466d-b42a-98011fed3eb2/resourceGroups/azuron-keyvault/providers/Microsoft.KeyVault/vaults/azuron"
+
 az vmss identity assign \
 --identities azuron-devops-agents \
 --name azuron-devops-agents \
