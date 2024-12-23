@@ -1,20 +1,32 @@
-# Authenticate As Human Using CLI
+# Azure Terraform Play
 
-GCP: gcloud auth login
-AZURE: az login
+Here we setup and run Hashicorp Terrafom in Azure DevOps CI/CD pipelines by bringing our own:-
 
-# Microsoft Entra
+- Azure DevOps Self-Hosted Agents
+- A fully tooled docker container with the Hashicorp Terrafom on it
+- Simple authentication and authorisation using Azure User Managed Identities
+
+# Microsoft Entra ID
 
 Azure subscription and Azure DevOps Org connected to same Microsoft Entra, Default Directory
 
-# Bootstrap Azure: Create Resource Group
+# Bootstrap Azure
+
+## From Laptop, Authenticate As Human Using CLI
+
+```
+GCP: gcloud auth login
+AZURE: az login
+```
+
+## Bootstrap Azure: Create Resource Group
 ```
 az group create \
 --location westeurope \
 --name azuron-devops-agents
 ```
 
-# Bootstrap Azure: Create Container Registry
+## Bootstrap Azure: Create Container Registry
 ```
 az acr create --resource-group azuron-devops-agents --name azuron --sku Basic
 
@@ -33,7 +45,7 @@ docker build -t azuron.azurecr.io/azure-cli-terraform:0.0.1 .
 docker push azuron.azurecr.io/azure-cli-terraform:0.0.1
 ```
 
-# Bootstrap Azure: Self Hosted Pipeline Setup on Virtual Machine Scaling Sets
+## Bootstrap Azure: Self Hosted Pipeline Setup on Virtual Machine Scaling Sets
 
 Level: Subscription
 As role: Owner
@@ -94,8 +106,9 @@ az vmss identity assign \
 az vmss update-instances -g azuron-devops-agents -n azuron-devops-agents --instance-ids 0
 
 ```
+# Bootstrap Azure DevOps
 
-# Bootstrap Azure DevOps: Create Service Connection to Azure Subscription
+## Bootstrap Azure DevOps: Create Service Connection to Azure Subscription
 
 Level: Azure DevOps Project
 As role: Owner
@@ -104,7 +117,7 @@ Project Settings --> Pipelines --> Service connections --> New Service connectio
 
 ![alt text](readme-png/readme-az-dev-ops-svc-conn.png)
 
-# Bootstrap Azure DevOps: Self Hosted Pipeline Setup
+## Bootstrap Azure DevOps: Self Hosted Pipeline Setup
 
 Level: Azure DevOps Project
 As role: Owner
@@ -121,7 +134,7 @@ Pipelines cannot be executed until that is completed.
 
 Azure DevOps is automatically installing additional agent software on the self-hosted VMs to register them as Azure DevOps agents.
 
-# Bootstrap Azure Devops: Parallel Jobs
+## Bootstrap Azure Devops: Parallel Jobs
 
 Level: Azure DevOps Project
 As role: Owner
@@ -136,7 +149,7 @@ So you will need to have a VM Scaling Set that will scale to the same number as 
 
 Project Settings --> Pipelines --> Parallel Jobs --> Self Hosted --> Change --> Self Hosted (CI/CD) = NO. OF PARALLEL JOBs REQUIRED
 
-# Bootstrap Azure Devops: Create Pipeline (Different for GitHub Enterprise)
+## Bootstrap Azure Devops: Create Pipeline (Different for GitHub Enterprise)
 
 Level: Azure DevOps Project
 As role: Project Administrator Group
@@ -166,7 +179,7 @@ Azure Devops creates nice status updates too, like this:-
 
 ![alt text](readme-png/readme-nice-ci-status.png)
 
-# Delete All Resources
+# Delete Azure All Resources
 
 ```
 az group delete --name azuron-devops-agents

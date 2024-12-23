@@ -24,15 +24,25 @@ jobs:
         az login --identity --username ${{ variables.msi_client_id }}
         az acr login -n azuron.azurecr.io
   - task: Bash@3
-    displayName: Run custom container
+    displayName: Run custom container with user managed identity
     inputs:
       targetType: 'inline'
       script: |
         docker run -w /tmp/codebase \
                   -v $(Pipeline.Workspace)/s:/tmp/codebase:rw \
                   -v $HOME/.azure:/root/.azure:rw \
-                  azuron.azurecr.io/azure-cli-terraform:0.0.1 \
-                  /tmp/codebase/terraform-init-apply.sh
+                  azuron.azurecr.io/azure-cli-terraform:0.0.2 \
+                  /tmp/codebase/terraform-init-apply-msi.sh
+  - task: Bash@3
+    displayName: Run custom container with service principal name
+    inputs:
+      targetType: 'inline'
+      script: |
+        docker run -w /tmp/codebase \
+                  -v $(Pipeline.Workspace)/s:/tmp/codebase:rw \
+                  -v $HOME/.azure:/root/.azure:rw \
+                  azuron.azurecr.io/azure-cli-terraform:0.0.2 \
+                  /tmp/codebase/terraform-init-apply-spn.sh
   - task: DeleteFiles@1
     displayName: 'clean *'
     inputs:

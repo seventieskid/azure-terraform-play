@@ -17,7 +17,6 @@ packages:
   - azure-cli
   - docker-ce
   - docker-ce-cli
-  - curl
 
 runcmd:
   - chmod 666 /var/run/docker.sock

@@ -13,8 +13,8 @@ az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_
 az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 
 export ARM_USE_MSI=true
-export ARM_TENANT_ID=576d634f-7729-4278-9174-4ed588ee532a
-export ARM_SUBSCRIPTION_ID=60e1436b-d08b-466d-b42a-98011fed3eb2
+export ARM_TENANT_ID=$(az account list | jq -r '.[0].tenantId')
+export ARM_SUBSCRIPTION_ID=$(az account list | jq -r '.[0].id')
 
 export TF_DATA_DIR=/tmp/.terraform
 
