@@ -14,6 +14,13 @@ az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORA
 
 # Because the below is commented out, terraform is falling back on the SPN contents to run, not the MSI
 #export ARM_USE_MSI=true
+
+echo "DEBUGGING START..."
+az keyvault secret show --name azuron-spn-client-id --vault-name azuron --query "value"
+
+az keyvault secret show --name azuron-spn-secret-id --vault-name azuron --query "value"
+echo "DEBUGGING END..."
+
 export ARM_CLIENT_ID=$(az keyvault secret show --name azuron-spn-client-id --vault-name azuron --query "value")
 export ARM_CLIENT_SECRET=$(az keyvault secret show --name azuron-spn-secret-id --vault-name azuron --query "value")
 export ARM_TENANT_ID=$(az account list | jq -r '.[0].tenantId')
