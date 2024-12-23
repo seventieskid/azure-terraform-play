@@ -153,7 +153,7 @@ Pipelines --> Create Pipeline --> GitHub
 
 ![pipeline 5](readme-png/readme-pipeline-point-to-yaml.png) 
 
-# DELETE ALL RESOURCES
+# Delete All Resources
 
 ```
 az group delete --name azuron-devops-agents
