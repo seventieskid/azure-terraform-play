@@ -18,7 +18,6 @@ packages:
   - docker-ce
   - docker-ce-cli
   - curl
-  - unzip # required for TerraformInstaller task
 
 runcmd:
   - chmod 666 /var/run/docker.sock
