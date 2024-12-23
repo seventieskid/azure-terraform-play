@@ -153,6 +153,19 @@ Pipelines --> Create Pipeline --> GitHub
 
 ![pipeline 5](readme-png/readme-pipeline-point-to-yaml.png) 
 
+# Firing Pipelines for CI and CD
+
+```
+azure-devops/ci.yml - Fires only when a PR is raised
+
+azure-devops/cd.yml - Fires only when a PR is merged
+
+```
+
+Azure Devops creates nice status updates too, like this:-
+
+![alt text](readme-png/readme-nice-ci-status.png)
+
 # Delete All Resources
 
 ```
