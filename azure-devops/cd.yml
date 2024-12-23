@@ -27,7 +27,7 @@ jobs:
         az login --identity --username ${{ variables.msi_client_id }}
         az acr login -n azuron.azurecr.io
   - task: Bash@3
-    displayName: Run custom container with user managed identity
+    displayName: TF in container with MSI
     inputs:
       targetType: 'inline'
       script: |
@@ -37,7 +37,7 @@ jobs:
                   azuron.azurecr.io/azure-cli-terraform:0.0.3 \
                   /tmp/codebase/terraform-init-apply-msi.sh
   - task: Bash@3
-    displayName: Run custom container with service principal name
+    displayName: TF in container with SPN
     inputs:
       targetType: 'inline'
       script: |

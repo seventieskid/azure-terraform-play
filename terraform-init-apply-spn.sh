@@ -25,8 +25,8 @@ az role assignment create \
 #export ARM_USE_MSI=true
 
 # Magic variables for terraform as SPN
-export ARM_CLIENT_ID=$(az keyvault secret show --name azuron-spn-new-client-id --vault-name azuron --query "value")
-export ARM_CLIENT_SECRET=$(az keyvault secret show --name azuron-spn-new-secret-id --vault-name azuron --query "value")
+export ARM_CLIENT_ID=$(az keyvault secret show --name azuron-spn-new-client-id --vault-name azuron --query "value" | tr -d '"')
+export ARM_CLIENT_SECRET=$(az keyvault secret show --name azuron-spn-new-secret-id --vault-name azuron --query "value" | tr -d '"')
 export ARM_TENANT_ID=$(az account list | jq -r '.[0].tenantId')
 export ARM_SUBSCRIPTION_ID=$(az account list | jq -r '.[0].id')
 
