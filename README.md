@@ -111,7 +111,7 @@ As role: Owner
 
 Project Settings --> Pipelines --> Service connections --> New Service connection --> Docker Registry
 
-???
+![alt text](readme-png/readme-acr-svc-conn.png)
 
 # Bootstrap Azure DevOps: Self Hosted Pipeline Setup
 
