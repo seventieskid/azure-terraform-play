@@ -14,6 +14,7 @@ az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_
 
 az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 
+# Allow the service principal to get access keys for the storage account
 az role assignment create \
     --role "Storage Account Contributor" \
     --assignee-object-id "3cb931d6-05df-4d9f-b3b7-adefd0b6db60" \
@@ -29,6 +30,8 @@ export ARM_TENANT_ID=$(az account list | jq -r '.[0].tenantId')
 export ARM_SUBSCRIPTION_ID=$(az account list | jq -r '.[0].id')
 
 export ARM_ACCESS_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
+
+az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
 export TF_DATA_DIR=/tmp/.terraform
 
