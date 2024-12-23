@@ -7,16 +7,38 @@ AZURE: az login
 
 Azure subscription and Azure DevOps Org connected to same Microsoft Entra, Default Directory
 
+# Bootstrap Azure: Create Resource Group
+```
+az group create \
+--location westeurope \
+--name azuron-devops-agents
+```
+
+# Bootstrap Azure: Create Container Registry
+```
+az acr create --resource-group azuron-devops-agents --name azuron --sku Basic
+
+az acr identity assign --identities "[system]" \
+                       --name azuron \
+                       --resource-group azuron-devops-agents
+
+# Assignee is the principal id from the above command
+az role assignment create --assignee 4903a65f-2b28-41f1-aa50-79eb37e6262f \
+--role AcrPull \
+--scope "/subscriptions/60e1436b-d08b-466d-b42a-98011fed3eb2"
+
+# Build and push pipeline image to ACR
+az acr login -n azuron.azurecr.io
+docker build -t azuron.azurecr.io/azure-cli-terraform:0.0.1 .
+docker push azuron.azurecr.io/azure-cli-terraform:0.0.1
+```
+
 # Bootstrap Azure: Self Hosted Pipeline Setup on Virtual Machine Scaling Sets
 
 Level: Subscription
 As role: Owner
 
 ```
-az group create \
---location westeurope \
---name azuron-devops-agents
-
 # With private IP
 az vmss create \
 --name azuron-devops-agents \
@@ -81,6 +103,15 @@ As role: Owner
 Project Settings --> Pipelines --> Service connections --> New Service connection --> Azure Resource Manager
 
 ![alt text](readme-png/readme-az-dev-ops-svc-conn.png)
+
+# Bootstrap Azure DevOps: Create Service Connection to Azure Container Registry
+
+Level: Azure DevOps Project
+As role: Owner
+
+Project Settings --> Pipelines --> Service connections --> New Service connection --> Docker Registry
+
+???
 
 # Bootstrap Azure DevOps: Self Hosted Pipeline Setup
 

@@ -3,7 +3,6 @@
 RESOURCE_GROUP_NAME=terraform-test-rg
 STORAGE_ACCOUNT_NAME=terraformgarethrees
 STORAGE_CONTAINER_NAME=terraform-state
-COMMIT_SHA=$LONG_COMMIT_SHA
 REGION=westeurope
 
 # Prep for tf state storage
