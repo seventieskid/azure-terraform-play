@@ -31,7 +31,7 @@ export ARM_SUBSCRIPTION_ID=$(az account list | jq -r '.[0].id')
 
 export ARM_ACCESS_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
 
-az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+#az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
 export TF_DATA_DIR=/tmp/.terraform
 
