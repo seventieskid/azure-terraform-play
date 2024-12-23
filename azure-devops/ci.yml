@@ -13,11 +13,11 @@ jobs:
 
   variables:
   - name: msi_client_id
-    value: 78020b6e-cbe3-4999-81d2-9fdbecf2a470    # From user identity creation
+    value: 78020b6e-cbe3-4999-81d2-9fdbecf2a470    # From existing user managed identity
 
   steps:
   - task: Bash@3
-    displayName: Bring Azure identity onto agent
+    displayName: Bring Azure user managed identity onto agent
     inputs:
       targetType: 'inline'
       script: |
