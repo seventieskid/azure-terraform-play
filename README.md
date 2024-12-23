@@ -104,15 +104,6 @@ Project Settings --> Pipelines --> Service connections --> New Service connectio
 
 ![alt text](readme-png/readme-az-dev-ops-svc-conn.png)
 
-# Bootstrap Azure DevOps: Create Service Connection to Azure Container Registry
-
-Level: Azure DevOps Project
-As role: Owner
-
-Project Settings --> Pipelines --> Service connections --> New Service connection --> Docker Registry
-
-![alt text](readme-png/readme-acr-svc-conn.png)
-
 # Bootstrap Azure DevOps: Self Hosted Pipeline Setup
 
 Level: Azure DevOps Project
