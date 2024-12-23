@@ -15,7 +15,7 @@ az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_
 az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 
 az role assignment create \
-    --role "Storage Blob Data Contributor" \
+    --role "Storage Account Contributor" \
     --assignee-object-id "3cb931d6-05df-4d9f-b3b7-adefd0b6db60" \
     --assignee-principal-type "ServicePrincipal" \
     --scope "/subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP_NAME/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT_NAME/blobServices/default/containers/$STORAGE_CONTAINER_NAME"
@@ -27,6 +27,8 @@ export ARM_CLIENT_ID=$(az keyvault secret show --name azuron-spn-client-id --vau
 export ARM_CLIENT_SECRET=$(az keyvault secret show --name azuron-spn-secret-id --vault-name azuron --query "value")
 export ARM_TENANT_ID=$(az account list | jq -r '.[0].tenantId')
 export ARM_SUBSCRIPTION_ID=$(az account list | jq -r '.[0].id')
+
+export ARM_ACCESS_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
 
 export TF_DATA_DIR=/tmp/.terraform
 
