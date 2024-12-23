@@ -12,6 +12,9 @@ jobs:
     value: 78020b6e-cbe3-4999-81d2-9fdbecf2a470    # From user identity creation
 
   steps:
+  - checkout: self
+    fetchTags: true
+
   - task: Bash@3
     displayName: Bring Azure identity onto agent
     inputs:
