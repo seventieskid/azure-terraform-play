@@ -11,17 +11,14 @@ jobs:
     clean: all
   pool: azuron-devops-agents
 
-  variables:
-  - name: msi_client_id
-    value: 78020b6e-cbe3-4999-81d2-9fdbecf2a470    # From existing user managed identity
-
   steps:
   - task: Bash@3
     displayName: Bring Azure user managed identity onto agent
     inputs:
       targetType: 'inline'
       script: |
-        az login --identity --username ${{ variables.msi_client_id }}
+        ID=$(az identity show --name azuron-devops-agents --resource-group azuron-devops-agents --query "clientId" --output tsv)
+        az login --identity --username ${ID}
         az acr login -n azuron.azurecr.io
   - task: Bash@3
     displayName: TF in container with MSI
