@@ -1,5 +1,7 @@
+# Don't fire pipeline
 trigger: none
 
+# Fire pipeline event if PR related
 pr:
 - master
 
