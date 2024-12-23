@@ -24,8 +24,8 @@ az role assignment create \
 # Because the below is commented out, terraform is falling back on the SPN contents to run, not the MSI
 #export ARM_USE_MSI=true
 
-export ARM_CLIENT_ID=$(az keyvault secret show --name azuron-spn-client-id --vault-name azuron --query "value")
-export ARM_CLIENT_SECRET=$(az keyvault secret show --name azuron-spn-secret-id --vault-name azuron --query "value")
+export ARM_CLIENT_ID=$(az keyvault secret show --name azuron-spn-client-id --vault-name azuron --query "value" | tr -d '"')
+export ARM_CLIENT_SECRET=$(az keyvault secret show --name azuron-spn-secret-id --vault-name azuron --query "value" | tr -d '"')
 export ARM_TENANT_ID=$(az account list | jq -r '.[0].tenantId')
 export ARM_SUBSCRIPTION_ID=$(az account list | jq -r '.[0].id')
 
