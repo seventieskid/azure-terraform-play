@@ -26,19 +26,12 @@ az role assignment create --assignee "xyz" \
 
 ## Bootstrap Azure: Create Service Principal Name (SPN)
 ```
-SPN_OUT=$(az ad sp create-for-rbac --display-name azuron-spn --role="Contributor" --scopes="/subscriptions/60e1436b-d08b-466d-b42a-98011fed3eb2")
+SPN_OUT=$(az ad sp create-for-rbac --display-name azuron-spn-new --role="Contributor" --scopes="/subscriptions/60e1436b-d08b-466d-b42a-98011fed3eb2")
 
-SPN_CLIENT_ID=$(echo $SPN_OUT | jq -r '.appId')
-SPN_SECRET_ID=$(echo $SPN_OUT | jq -r '.password')
+SPN_CLIENT_ID=$(echo $SPN_OUT | jq -r '.appId' | tr -d '"')
+SPN_SECRET_ID=$(echo $SPN_OUT | jq -r '.password' | tr -d '"')
 
-az keyvault secret set --vault-name "azuron" --name "azuron-spn-client-id" --value "${SPN_CLIENT_ID}"
-az keyvault secret set --vault-name "azuron" --name "azuron-spn-secret-id" --value "${SPN_SECRET_ID}"
-```
-
-## Bootstrap Azure: Enure Our Pipeline User Managed Identity can pull secrets from Key Vault
-```
-az role assignment create --assignee 23d6202e-42d4-4ad7-b8ba-9a9fbcfb2212 \
---role "Key Vault Secrets User" \
---scope "/subscriptions/60e1436b-d08b-466d-b42a-98011fed3eb2"
+az keyvault secret set --vault-name "azuron" --name "azuron-spn-new-client-id" --value "${SPN_CLIENT_ID}"
+az keyvault secret set --vault-name "azuron" --name "azuron-spn-new-secret-id" --value "${SPN_SECRET_ID}"
 ```
 
