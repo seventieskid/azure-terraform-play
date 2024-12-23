@@ -1,7 +1,9 @@
 trigger: none
 
 pr:
-- master
+  branches:
+    include:
+    - '*'
 
 jobs:
 - job: terraform_test
