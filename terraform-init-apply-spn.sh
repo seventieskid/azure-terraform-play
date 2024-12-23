@@ -5,12 +5,20 @@ STORAGE_ACCOUNT_NAME=terraformgarethrees
 STORAGE_CONTAINER_NAME=terraform-state
 REGION=westeurope
 
+export ARM_SUBSCRIPTION_ID=$(az account list | jq -r '.[0].id')
+
 # Prep for tf state storage
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
 
 az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
 
 az storage container create --name $STORAGE_CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
+
+az role assignment create \
+    --role "Storage Blob Data Contributor" \
+    --assignee-object-id "3cb931d6-05df-4d9f-b3b7-adefd0b6db60" \
+    --assignee-principal-type "ServicePrincipal" \
+    --scope "/subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP_NAME/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT_NAME/blobServices/default/containers/$STORAGE_CONTAINER_NAME"
 
 # Because the below is commented out, terraform is falling back on the SPN contents to run, not the MSI
 #export ARM_USE_MSI=true
