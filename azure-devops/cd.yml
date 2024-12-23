@@ -1,6 +1,8 @@
+# Fire pipeline event for merges to master only
 trigger:
 - master
 
+# Don't fire pipeline event if PR related
 pr: none
 
 jobs:
